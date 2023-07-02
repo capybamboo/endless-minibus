@@ -1,5 +1,6 @@
 using static System.Net.Mime.MediaTypeNames;
 using UnityEngine;
+using TMPro.Examples;
 
 [RequireComponent(typeof(Text))]
 public class TextButton : MonoBehaviour
@@ -13,10 +14,13 @@ public class TextButton : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            var wordIndex = TMPro.TMP_TextUtilities.FindIntersectingLine(text, Input.mousePosition, camera);
-
-            Debug.Log("Exit Game");
-            UnityEngine.Application.Quit();
+            var findStatus = TMPro.TMP_TextUtilities.FindIntersectingLine(text, Input.mousePosition, camera);
+            if (findStatus != -1)
+            {
+                Debug.Log("Exit Game");
+                UnityEngine.Application.Quit();
+            }
+            
         }
     }
 }

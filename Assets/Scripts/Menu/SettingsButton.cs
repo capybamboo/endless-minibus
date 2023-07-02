@@ -13,11 +13,12 @@ public class SettingsButton : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            var wordIndex = TMPro.TMP_TextUtilities.FindIntersectingLine(text, Input.mousePosition, camera);
-
-            Debug.Log("Go to settings");
-            UnityEngine.Application.Quit();
-            CutsceneManager.Instance.StartCutscene("to_settings");
+            var findStatus = TMPro.TMP_TextUtilities.FindIntersectingLine(text, Input.mousePosition, camera);
+            if (findStatus != -1)
+            {
+                Debug.Log("Go to settings");
+                CutsceneManager.Instance.StartCutscene("to_settings");
+            }
         }
     }
 }
