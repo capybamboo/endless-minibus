@@ -5,36 +5,30 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class FPSController : MonoBehaviour
 {
-    [SerializeField]
     public Camera playerCamera;
-    [SerializeField]
     public float walkSpeed = 4f;
-    [SerializeField]
     public float runSpeed = 6f;
-    [SerializeField]
     public float jumpPower = 4f;
-    [SerializeField]
     public float gravity = 15f;
 
-    [SerializeField]
     public float lookSpeed = 2f;
-    [SerializeField]
     public float lookXLimit = 70f;
 
 
     Vector3 moveDirection = Vector3.zero;
     private float _rotationX = 0;
 
-    [SerializeField]
     public bool canMove = true;
 
+    
 
     CharacterController characterController;
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        Cursor.visible = true;
+
     }
 
     void Update()
