@@ -325,7 +325,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 93216866}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 936440832}
+        m_TargetAssemblyTypeName: Settings, Assembly-CSharp
+        m_MethodName: ExitSettings
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &93216866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -638,7 +650,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 388826402}
-  - component: {fileID: 388826403}
   m_Layer: 0
   m_Name: Location
   m_TagString: Untagged
@@ -662,20 +673,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &388826403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 388826401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12797c2d543529b428d56eb42f698252, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetFrameRate: 60
-  vSync: 0
 --- !u!1 &429047606
 GameObject:
   m_ObjectHideFlags: 0
@@ -1313,7 +1310,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 577723748}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 936440832}
+        m_TargetAssemblyTypeName: Settings, Assembly-CSharp
+        m_MethodName: SaveSettings
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &577723748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1583,8 +1592,20 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
-  m_IsOn: 1
+      m_Calls:
+      - m_Target: {fileID: 936440832}
+        m_TargetAssemblyTypeName: Settings, Assembly-CSharp
+        m_MethodName: SetvSync
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_IsOn: 0
 --- !u!4 &644098755 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5623816384937972763, guid: 10078452dab690a4099417aafe441aed, type: 3}
@@ -1855,6 +1876,7 @@ GameObject:
   - component: {fileID: 936440830}
   - component: {fileID: 936440829}
   - component: {fileID: 936440828}
+  - component: {fileID: 936440832}
   m_Layer: 5
   m_Name: Settings
   m_TagString: Untagged
@@ -1953,6 +1975,19 @@ RectTransform:
   m_AnchoredPosition: {x: -36.41, y: 2.079}
   m_SizeDelta: {x: 1068, y: 589}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &936440832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936440827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71ca10aea6d1e59438c5d04a2e7fa92a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resolutionDropdown: {fileID: 1984571057}
 --- !u!1 &943721654
 GameObject:
   m_ObjectHideFlags: 0
@@ -2774,7 +2809,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 936440832}
+        m_TargetAssemblyTypeName: Settings, Assembly-CSharp
+        m_MethodName: SetFullScreen
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
 --- !u!1001 &1125966087
 PrefabInstance:
@@ -6145,7 +6192,19 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 936440832}
+        m_TargetAssemblyTypeName: Settings, Assembly-CSharp
+        m_MethodName: SetResolution
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &1984571058
 MonoBehaviour:
