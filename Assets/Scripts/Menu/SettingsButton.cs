@@ -5,7 +5,7 @@ using UnityEngine;
 public class SettingsButton : MonoBehaviour
 {
     public TMPro.TextMeshProUGUI text;
-    public Camera camera;
+    [SerializeField] private Camera _camera;
 
     public string LastClickedWord;
 
@@ -13,7 +13,7 @@ public class SettingsButton : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            var findStatus = TMPro.TMP_TextUtilities.FindIntersectingLine(text, Input.mousePosition, camera);
+            var findStatus = TMPro.TMP_TextUtilities.FindIntersectingLine(text, Input.mousePosition, _camera);
             if (findStatus != -1)
             {
                 Debug.Log("Go to settings");

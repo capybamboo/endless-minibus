@@ -33,6 +33,11 @@ public class FPSController : MonoBehaviour
 
     void Update()
     {
+        
+        if (1 + PlayerPrefs.GetFloat("MouseSpeed") * 2 != lookSpeed)
+        {
+            lookSpeed = 1 + PlayerPrefs.GetFloat("MouseSpeed") * 2;
+        }
 
         #region Handles Movment
         Vector3 forward = transform.TransformDirection(Vector3.forward);
