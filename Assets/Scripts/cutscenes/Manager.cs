@@ -36,7 +36,7 @@ public class CutsceneManager : MonoBehaviour
 
         if (!cutsceneDataBase.ContainsKey(cutsceneKey))
         {
-            Debug.LogError($"Катсцены c ключом \"{cutsceneKey}\" нету в cutsceneDataBase");
+            Debug.LogError($"\"{cutsceneKey}\" is not exists");
             return;
         }
 

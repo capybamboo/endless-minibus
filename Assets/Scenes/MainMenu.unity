@@ -3345,7 +3345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1039369199}
-  camera: {fileID: 551342634}
+  _camera: {fileID: 551342634}
   LastClickedWord: 
 --- !u!1001 &1048225080
 PrefabInstance:
@@ -6364,6 +6364,7 @@ GameObject:
   - component: {fileID: 1730902360}
   - component: {fileID: 1730902362}
   - component: {fileID: 1730902361}
+  - component: {fileID: 1730902363}
   m_Layer: 5
   m_Name: New Game
   m_TagString: Untagged
@@ -6488,6 +6489,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1730902359}
   m_CullTransparentMesh: 1
+--- !u!114 &1730902363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1730902359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a642065388708d846b0bcda3b5c5e695, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 1730902361}
+  _camera: {fileID: 551342634}
 --- !u!1 &1744228626
 GameObject:
   m_ObjectHideFlags: 0
