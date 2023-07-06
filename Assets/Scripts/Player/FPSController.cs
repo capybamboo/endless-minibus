@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,31 +20,82 @@ public class FPSController : MonoBehaviour
     private float _rotationX = 0;
 
     public bool canMove = true;
-
+    public bool canSprint = false;
+    public bool canJump = false;
     
 
     CharacterController characterController;
     void Start()
     {
+        if (PlayerPrefs.HasKey("CanMove"))
+        {
+            canMove = Convert.ToBoolean(PlayerPrefs.GetInt("CanMove"));
+        }
+        else
+        {
+            PlayerPrefs.SetInt("CanMove", 1);
+
+            canMove = Convert.ToBoolean(PlayerPrefs.GetInt("CanMove"));
+        }
+
+        if (PlayerPrefs.HasKey("CanSprint"))
+        {
+            canSprint = Convert.ToBoolean(PlayerPrefs.GetInt("CanSprint"));
+        }
+        else
+        {
+            PlayerPrefs.SetInt("CanSprint", 0);
+
+            canSprint = Convert.ToBoolean(PlayerPrefs.GetInt("CanSprint"));
+        }
+
+        if (PlayerPrefs.HasKey("CanJump"))
+        {
+            canJump = Convert.ToBoolean(PlayerPrefs.GetInt("CanJump"));
+        }
+        else
+        {
+            PlayerPrefs.SetInt("CanJump", 0);
+
+            canJump = Convert.ToBoolean(PlayerPrefs.GetInt("CanJump"));
+        }
+
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = true;
-
+        Cursor.visible = false;
     }
+
 
     void Update()
     {
-        
+        if (Convert.ToBoolean(PlayerPrefs.GetInt("CanMove")) != canMove)
+        {
+            canMove = Convert.ToBoolean(PlayerPrefs.GetInt("CanMove"));
+        }
+
+
+        if (Convert.ToBoolean(PlayerPrefs.GetInt("CanSprint")) != canSprint)
+        {
+            canSprint = Convert.ToBoolean(PlayerPrefs.GetInt("CanSprint"));
+        }
+
+
+        if (Convert.ToBoolean(PlayerPrefs.GetInt("CanJump")) != canJump)
+        {
+            canJump = Convert.ToBoolean(PlayerPrefs.GetInt("CanJump"));
+        }
+
         if (1 + PlayerPrefs.GetFloat("MouseSpeed") * 2 != lookSpeed)
         {
             lookSpeed = 1 + PlayerPrefs.GetFloat("MouseSpeed") * 2;
         }
+        Debug.Log(lookSpeed);
 
         #region Handles Movment
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
 
-        bool isRunning = Input.GetKey(KeyCode.LeftControl);
+        bool isRunning = Input.GetKey(KeyCode.LeftControl) && canSprint;
         float curSpeedX = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Vertical") : 0;
         float curSpeedY = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Horizontal") : 0;
         float movementDirectionY = moveDirection.y;
@@ -52,7 +104,7 @@ public class FPSController : MonoBehaviour
         #endregion
 
         #region Handles Jumping
-        if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
+        if (Input.GetButton("Jump") && canMove && characterController.isGrounded && canJump)
         {
             moveDirection.y = jumpPower;
         }
