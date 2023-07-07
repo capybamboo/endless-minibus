@@ -16,7 +16,7 @@ public class PauseMenu : MonoBehaviour
     private float _volumeLevel = 0.5f;
     private uint _targetFrameRateValue = 300;
 
-    [SerializeField] private List<GameObject> _playerUIObjects = new();
+    [SerializeField] private List<UIObject> _playerUIObjects = new();
 
     [SerializeField] private Dropdown _resolutionDropdown;
     [SerializeField] private Dropdown _qualityDropdown;
@@ -99,9 +99,12 @@ public class PauseMenu : MonoBehaviour
 
         pauseMenuUI.SetActive(false);
 
-        foreach (GameObject obj in _playerUIObjects) 
+        foreach (UIObject obj in _playerUIObjects) 
         {
-            obj.SetActive(true);
+            if (obj.startVisibility)
+            {
+                obj.gameObject.SetActive(true);
+            }
         }
         Time.timeScale = 1f;
         status = 0;
@@ -116,9 +119,9 @@ public class PauseMenu : MonoBehaviour
 
         pauseMenuUI.SetActive(true);
 
-        foreach (GameObject obj in _playerUIObjects)
+        foreach (UIObject obj in _playerUIObjects)
         {
-            obj.SetActive(false);
+            obj.gameObject.SetActive(false);
         }
         settingsMenuUI.SetActive(false);
         Time.timeScale = 0f;
@@ -148,12 +151,6 @@ public class PauseMenu : MonoBehaviour
         settingsMenuUI.SetActive(true);
         pauseMenuUI.SetActive(false);
         status = 2;
-    }
-
-    public void ToMainMenu()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(0);
     }
 
     public void Save()
@@ -308,4 +305,11 @@ public class PauseMenu : MonoBehaviour
         return '\0';
     }
     #endregion
+}
+
+[System.Serializable]
+class UIObject
+{
+    public bool startVisibility = true;
+    public GameObject gameObject;
 }
