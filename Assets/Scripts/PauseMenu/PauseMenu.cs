@@ -191,6 +191,7 @@ public class PauseMenu : MonoBehaviour
         if (PlayerPrefs.HasKey("VolumeLevel"))
         {
             AudioListener.volume = PlayerPrefs.GetFloat("VolumeLevel");
+            _volumeLevel = PlayerPrefs.GetFloat("VolumeLevel");
 
             _volume.value = PlayerPrefs.GetFloat("VolumeLevel");
         }
@@ -204,6 +205,7 @@ public class PauseMenu : MonoBehaviour
         if (PlayerPrefs.HasKey("ResolutionPreference"))
         {
             _resolutionDropdown.value = PlayerPrefs.GetInt("ResolutionPreference");
+            currentResolutionIndex = PlayerPrefs.GetInt("ResolutionPreference");
         }
         else
         {
@@ -254,7 +256,7 @@ public class PauseMenu : MonoBehaviour
         if (PlayerPrefs.HasKey("TargetFrameRate"))
         {
             _targetFrameRateValue = Convert.ToUInt16(PlayerPrefs.GetInt("TargetFrameRate"));
-            Debug.Log(_targetFrameRateValue);
+
             Application.targetFrameRate = Convert.ToInt16(_targetFrameRateValue);
 
             _targetFrameRate.text = System.Convert.ToString(_targetFrameRateValue);
