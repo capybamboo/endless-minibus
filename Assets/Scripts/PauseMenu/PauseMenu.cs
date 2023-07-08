@@ -67,6 +67,10 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            if (PlayerPrefs.GetInt("CurrentID") != -1)
+            {
+                return;
+            }
             if (status == 0)
             {
                 Pause();

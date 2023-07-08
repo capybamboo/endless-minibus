@@ -64,7 +64,7 @@ public class Inventory : MonoBehaviour
 
                 background.SetActive(true);
             }
-            else if (background.activeSelf && !Convert.ToBoolean(PlayerPrefs.GetInt("CanMove")))
+            else if (background.activeSelf && !Convert.ToBoolean(PlayerPrefs.GetInt("CanMove")) && currentID == -1)
             {
                 PlayerPrefs.SetInt("CanMove", 1);
                 Cursor.lockState = CursorLockMode.Locked;
@@ -215,6 +215,7 @@ public class Inventory : MonoBehaviour
                 return;
             }
             currentID = int.Parse(eventSystem.currentSelectedGameObject.name);
+            PlayerPrefs.SetInt("CurrentID", currentID);
             currentItem = CopyInventoryItem(items[currentID]);
 
             movingObject.gameObject.SetActive(true);
@@ -246,7 +247,7 @@ public class Inventory : MonoBehaviour
             }
             
             currentID = -1;
-
+            PlayerPrefs.SetInt("CurrentID", currentID);
             movingObject.gameObject.SetActive(false);
         }
         UpdateInventory();
@@ -270,6 +271,23 @@ public class Inventory : MonoBehaviour
         Vector3 position = Input.mousePosition + offset;
 
         movingObject.position = position;
+    }
+
+    public void LoadData(List<Save.SaveItemInventory> inventoris)
+    {
+        for (int i = 0; i < inventoris.Count; i++)
+        {
+            items[inventoris[i].index].id = inventoris[i].id;
+            items[inventoris[i].index].count = inventoris[i].count;
+            for (int j = 0; j < data.items.Count; j++)
+            {
+                if (data.items[j].id == inventoris[i].id)
+                {
+                    items[inventoris[i].index].image = data.items[j].image;
+                    break;
+                }
+            }
+        }
     }
 }
 
