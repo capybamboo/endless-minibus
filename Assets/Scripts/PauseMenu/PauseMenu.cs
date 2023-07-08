@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class PauseMenu : MonoBehaviour
     private float _volumeLevel = 0.5f;
     private uint _targetFrameRateValue = 300;
 
+    [SerializeField] private GameObject _inventory;
+    [SerializeField] private GameObject _player;
     [SerializeField] private List<UIObject> _playerUIObjects = new();
 
     [SerializeField] private Dropdown _resolutionDropdown;
@@ -23,8 +26,8 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private InputField _targetFrameRate;
     [SerializeField] private Scrollbar _volume;
     [SerializeField] private Scrollbar _sensitivity;
-    [SerializeField] private Toggle _vSync;
-    [SerializeField] private Toggle _fullscreen;
+    [SerializeField] private UnityEngine.UI.Toggle _vSync;
+    [SerializeField] private UnityEngine.UI.Toggle _fullscreen;
 
     private void Start()
     {
@@ -67,9 +70,17 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (PlayerPrefs.GetInt("CurrentID") != -1)
+            if (_inventory.activeSelf)
             {
-                return;
+                if (_inventory.GetComponent<Inventory>().background.activeSelf && !_player.GetComponent<FPSController>().canMove && _inventory.GetComponent<Inventory>().currentID == -1)
+                {
+                    _player.GetComponent<FPSController>().canMove = true;
+                    UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+                    UnityEngine.Cursor.visible = false;
+
+                    _inventory.GetComponent<Inventory>().background.SetActive(false);
+                    return;
+                }
             }
             if (status == 0)
             {
@@ -96,10 +107,10 @@ public class PauseMenu : MonoBehaviour
     #region Main Menu
     public void Resume()
     {
-        PlayerPrefs.SetInt("CanMove", 1);
+        _player.GetComponent<FPSController>().canMove = true;
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        UnityEngine.Cursor.visible = false;
 
         pauseMenuUI.SetActive(false);
 
@@ -116,10 +127,10 @@ public class PauseMenu : MonoBehaviour
 
     private void Pause()
     {
-        PlayerPrefs.SetInt("CanMove", 0);
+        _player.GetComponent<FPSController>().canMove = false;
 
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = true;
+        UnityEngine.Cursor.lockState = CursorLockMode.Confined;
+        UnityEngine.Cursor.visible = true;
 
         pauseMenuUI.SetActive(true);
 
