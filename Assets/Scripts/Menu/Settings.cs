@@ -17,7 +17,7 @@ public class Settings : MonoBehaviour
     Resolution[] resolutions;
     private float _mouseSpeed = 1f;
     private float _volumeLevel = 0.5f;
-    private uint _targetFrameRateValue = 300;
+    private uint _targetFrameRateValue = 999;
 
     public void Update()
     {
@@ -154,7 +154,8 @@ public class Settings : MonoBehaviour
         #region Target Frame Rate
         if (PlayerPrefs.HasKey("TargetFrameRate"))
         {
-            Application.targetFrameRate = PlayerPrefs.GetInt("TargetFrameRate");
+            _targetFrameRateValue = Convert.ToUInt16(PlayerPrefs.GetInt("TargetFrameRate"));
+            Application.targetFrameRate = Convert.ToInt16(_targetFrameRateValue);
 
             _targetFrameRate.text = System.Convert.ToString(PlayerPrefs.GetInt("TargetFrameRate"));
         }
