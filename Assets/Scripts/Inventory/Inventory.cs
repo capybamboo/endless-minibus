@@ -10,6 +10,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] private EventSystem eventSystem;
     [SerializeField] private Canvas _canvas;
     [SerializeField] private GameObject _panelInventory;
+    [SerializeField] private GameObject _player;
 
     public int currentID;
     public ItemInventory currentItem;
@@ -56,17 +57,18 @@ public class Inventory : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.I))
         {
-            if (!background.activeSelf && Convert.ToBoolean(PlayerPrefs.GetInt("CanMove")))
+            if (!background.activeSelf && _player.GetComponent<FPSController>().canMove)
             {
-                PlayerPrefs.SetInt("CanMove", 0);
+                _player.GetComponent<FPSController>().canMove = false;
                 Cursor.lockState = CursorLockMode.Confined;
                 Cursor.visible = true;
 
                 background.SetActive(true);
             }
-            else if (background.activeSelf && !Convert.ToBoolean(PlayerPrefs.GetInt("CanMove")) && currentID == -1)
+            else if (background.activeSelf && !_player.GetComponent<FPSController>().canMove && currentID == -1)
             {
-                PlayerPrefs.SetInt("CanMove", 1);
+                _player.GetComponent<FPSController>().canMove = true;
+
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
 
@@ -151,7 +153,7 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < maxCount; i++)
         {
-            GameObject newItem = Instantiate(gameObjectShow, InventoryMainObject.transform) as GameObject;
+            GameObject newItem = Instantiate(gameObjectShow, InventoryMainObject.transform);
             
             newItem.name = i.ToString();
 

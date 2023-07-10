@@ -23,11 +23,13 @@ public class SaveLoadManager : MonoBehaviour
 
     public void SaveGame()
     {
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream fileStream = new FileStream(_file_path, FileMode.Create);
+        BinaryFormatter bf = new();
+        FileStream fileStream = new(_file_path, FileMode.Create);
 
-        Save save = new Save();
-        save.sceneID = sceneID;
+        Save save = new()
+        {
+            sceneID = sceneID
+        };
 
         save.SaveInventory(inventory);
 
@@ -42,8 +44,8 @@ public class SaveLoadManager : MonoBehaviour
         {
             return;
         }
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream fileStream = new FileStream(_file_path, FileMode.Open);
+        BinaryFormatter bf = new();
+        FileStream fileStream = new(_file_path, FileMode.Open);
         Save save = (Save)bf.Deserialize(fileStream);
         fileStream.Close();
         inventoryObject.GetComponent<Inventory>().LoadData(save.items);
