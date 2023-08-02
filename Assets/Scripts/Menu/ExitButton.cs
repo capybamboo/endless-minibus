@@ -1,6 +1,5 @@
 using static System.Net.Mime.MediaTypeNames;
 using UnityEngine;
-using TMPro.Examples;
 
 [RequireComponent(typeof(Text))]
 public class TextButton : MonoBehaviour
