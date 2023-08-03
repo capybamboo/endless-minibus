@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -214,6 +213,7 @@ public class Inventory : MonoBehaviour
         {
             if (items[int.Parse(eventSystem.currentSelectedGameObject.name)].id == 0)
             {
+                // maybe want fix
                 return;
             }
             currentID = int.Parse(eventSystem.currentSelectedGameObject.name);
